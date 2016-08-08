@@ -1,0 +1,20 @@
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\AppBanwao.Logistics.DataLayer.dll.config
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\AppBanwao.Logistics.DataLayer.dll
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\AppBanwao.Logistics.DataLayer.pdb
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.dll
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.xml
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\obj\Debug\AppBanwao.Logistics.DataLayer.csprojResolveAssemblyReference.cache
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\obj\Debug\AppBanwao.Logistics.DataLayer.dll
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\obj\Debug\AppBanwao.Logistics.DataLayer.pdb
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\Data07-07-14\Code RnD\Logistics-master\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\AppBanwao.Logistics.DataLayer.dll.config
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\AppBanwao.Logistics.DataLayer.dll
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\AppBanwao.Logistics.DataLayer.pdb
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.dll
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.xml
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\obj\Debug\AppBanwao.Logistics.DataLayer.csprojResolveAssemblyReference.cache
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\obj\Debug\AppBanwao.Logistics.DataLayer.dll
+D:\My work\DA work\Repo\logistics product\AppBanwao.Logistics.Web\AppBanwao.Logistics.DataLayer\obj\Debug\AppBanwao.Logistics.DataLayer.pdb

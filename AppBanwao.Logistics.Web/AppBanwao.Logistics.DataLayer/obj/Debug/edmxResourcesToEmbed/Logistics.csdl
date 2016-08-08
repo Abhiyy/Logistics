@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="test8Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserName">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="LogisticsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="UserNames" EntityType="Self.UserName" />
+    <EntitySet Name="Shipments" EntityType="test8Model.Shipment" />
+    <EntitySet Name="ShipmentHistories" EntityType="test8Model.ShipmentHistory" />
+    <EntitySet Name="ShipmentReceipients" EntityType="test8Model.ShipmentReceipient" />
+    <EntitySet Name="ShipmentSenders" EntityType="test8Model.ShipmentSender" />
+    <EntitySet Name="States" EntityType="test8Model.State" />
+    <EntitySet Name="StatusLists" EntityType="test8Model.StatusList" />
+    <AssociationSet Name="FK_ShipmentHistory_Shipment" Association="test8Model.FK_ShipmentHistory_Shipment">
+      <End Role="Shipment" EntitySet="Shipments" />
+      <End Role="ShipmentHistory" EntitySet="ShipmentHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentReceipient_Shipment" Association="test8Model.FK_ShipmentReceipient_Shipment">
+      <End Role="Shipment" EntitySet="Shipments" />
+      <End Role="ShipmentReceipient" EntitySet="ShipmentReceipients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentSender_Shipment" Association="test8Model.FK_ShipmentSender_Shipment">
+      <End Role="Shipment" EntitySet="Shipments" />
+      <End Role="ShipmentSender" EntitySet="ShipmentSenders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Shipment">
+    <Key>
+      <PropertyRef Name="ShipmentID" />
+    </Key>
+    <Property Name="ShipmentID" Type="Guid" Nullable="false" />
+    <Property Name="ShipmentAWB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ActualDeliveryOn" Type="DateTime" Precision="3" />
+    <Property Name="ExpectedDeliveryOn" Type="DateTime" Precision="3" />
+    <Property Name="Details" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ShipmentHistories" Relationship="test8Model.FK_ShipmentHistory_Shipment" FromRole="Shipment" ToRole="ShipmentHistory" />
+    <NavigationProperty Name="ShipmentReceipients" Relationship="test8Model.FK_ShipmentReceipient_Shipment" FromRole="Shipment" ToRole="ShipmentReceipient" />
+    <NavigationProperty Name="ShipmentSenders" Relationship="test8Model.FK_ShipmentSender_Shipment" FromRole="Shipment" ToRole="ShipmentSender" />
+  </EntityType>
+  <EntityType Name="ShipmentHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShipmentID" Type="Guid" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AddedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Shipment" Relationship="test8Model.FK_ShipmentHistory_Shipment" FromRole="ShipmentHistory" ToRole="Shipment" />
+  </EntityType>
+  <EntityType Name="ShipmentReceipient">
+    <Key>
+      <PropertyRef Name="ReceipientID" />
+    </Key>
+    <Property Name="ReceipientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShipmentID" Type="Guid" />
+    <Property Name="EmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Landmark" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="Country" Type="Int32" />
+    <Property Name="PrimaryContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Shipment" Relationship="test8Model.FK_ShipmentReceipient_Shipment" FromRole="ShipmentReceipient" ToRole="Shipment" />
+  </EntityType>
+  <EntityType Name="ShipmentSender">
+    <Key>
+      <PropertyRef Name="SenderID" />
+    </Key>
+    <Property Name="SenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShipmentID" Type="Guid" />
+    <Property Name="EmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Landmark" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="Country" Type="Int32" />
+    <Property Name="PrimaryContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SecondaryContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Shipment" Relationship="test8Model.FK_ShipmentSender_Shipment" FromRole="ShipmentSender" ToRole="Shipment" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="StatusList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_ShipmentHistory_Shipment">
+    <End Type="test8Model.Shipment" Role="Shipment" Multiplicity="0..1" />
+    <End Type="test8Model.ShipmentHistory" Role="ShipmentHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentID" />
+      </Principal>
+      <Dependent Role="ShipmentHistory">
+        <PropertyRef Name="ShipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentReceipient_Shipment">
+    <End Type="test8Model.Shipment" Role="Shipment" Multiplicity="0..1" />
+    <End Type="test8Model.ShipmentReceipient" Role="ShipmentReceipient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentID" />
+      </Principal>
+      <Dependent Role="ShipmentReceipient">
+        <PropertyRef Name="ShipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentSender_Shipment">
+    <End Type="test8Model.Shipment" Role="Shipment" Multiplicity="0..1" />
+    <End Type="test8Model.ShipmentSender" Role="ShipmentSender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentID" />
+      </Principal>
+      <Dependent Role="ShipmentSender">
+        <PropertyRef Name="ShipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBanwao.Logistics.Web", "AppBanwao.Logistics.Web\AppBanwao.Logistics.Web.csproj", "{799B5F60-D9CF-49B5-82D7-A1864AC601C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBanwao.Logistics.DataLayer", "AppBanwao.Logistics.DataLayer\AppBanwao.Logistics.DataLayer.csproj", "{80F4E9D7-BE6A-4FAD-A98F-27A59CDAB431}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{799B5F60-D9CF-49B5-82D7-A1864AC601C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{799B5F60-D9CF-49B5-82D7-A1864AC601C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{799B5F60-D9CF-49B5-82D7-A1864AC601C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F4E9D7-BE6A-4FAD-A98F-27A59CDAB431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F4E9D7-BE6A-4FAD-A98F-27A59CDAB431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F4E9D7-BE6A-4FAD-A98F-27A59CDAB431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F4E9D7-BE6A-4FAD-A98F-27A59CDAB431}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

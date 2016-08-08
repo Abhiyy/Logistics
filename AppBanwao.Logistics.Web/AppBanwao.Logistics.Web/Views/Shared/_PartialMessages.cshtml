@@ -1,0 +1,25 @@
+﻿@{
+    var alerts = TempData.ContainsKey(AppBanwao.Logistics.Web.Helpers.MessageHelper.TempDataKey)
+                ? (List<AppBanwao.Logistics.Web.Helpers.MessageHelper>)TempData[AppBanwao.Logistics.Web.Helpers.MessageHelper.TempDataKey]
+                : new List<AppBanwao.Logistics.Web.Helpers.MessageHelper>();
+
+                if (alerts.Any())
+                    {
+                        <hr/>
+                    }
+
+    foreach (var alert in alerts)
+    {
+        var dismissableClass = alert.Dismissable ? "alert-dismissable" : null;
+        <div class="alert alert-@alert.AlertStyle @dismissableClass">
+            @if (alert.Dismissable)
+            {
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            }
+            @Html.Raw(alert.Message)
+        </div>
+    }
+}
+
+
+

@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+@model AppBanwao.Logistics.Web.ViewModel.ShipmentCreateModel
+
+<div class="row">
+    <div class="col-md-12">
+            <div class="col-md-3 borderMenu">
+                @Html.Partial("_PartialAdminMenu")
+            </div>
+        <div class="col-md-9">
+<div class="row">
+
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index","Admin")">Home</a></li>
+            <li><a href="@Url.Action("Index","Shipment")">Shipment</a></li>
+            <li class="active">Create</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        @using (Html.BeginForm("Create", "Shipment", FormMethod.Post, new { @class = "form-horizontal"}))
+        {
+            <fieldset>
+                <legend><i class="fa fa-plus"></i> Create new shipment</legend>
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.ShipmentAWB, new { @class="col-md-4 control-label"})
+                    
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.ShipmentAWB, new { @class = "form-control", @placeholder = "Enter shipment's AWB here..." })
+                        @Html.ValidationMessageFor(m => m.ShipmentAWB, null, new {@class="text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.Description, new { @class="col-md-4 control-label"})
+                    
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @placeholder = "Enter shipment's Description/name here..." })
+                        @Html.ValidationMessageFor(m => m.Description, null, new {@class="text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.Details, new { @class="col-md-4 control-label"})
+                    
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @placeholder = "Enter shipment's details here..." })
+                        @Html.ValidationMessageFor(m => m.Details, null, new {@class="text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.ExpectedDeliveryOn, new { @class="col-md-4 control-label"})
+                    
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.ExpectedDeliveryOn, new { @class = "form-control", @placeholder = "Enter shipment's details here..." })
+                        @Html.ValidationMessageFor(m => m.ExpectedDeliveryOn, null, new {@class="text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Widget Type</label>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(m => m.Status, (SelectList)ViewBag.StatusList, new { @class = "form-control" })
+                    </div>
+                </div>
+
+          
+                
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-4">
+
+                        <button type="submit" class="btn btn-primary blueButton">Create <i class="fa fa-plus"></i></button>
+                        <hr />
+                        <a href="@Url.Action("Index","Admin")" class="btn btn-danger">Back <i class="fa fa-backward"></i> </a>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
+    </div>
+        </div>
+    </div>

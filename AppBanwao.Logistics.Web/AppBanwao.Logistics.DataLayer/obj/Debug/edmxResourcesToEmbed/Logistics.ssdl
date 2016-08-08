@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="test8Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'logistics.dbo.City' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="City">
+          <Property Name="ID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'logistics.dbo.Country' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Country">
+          <Property Name="ID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+        </EntityType>-->
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Shipment">
+    <Key>
+      <PropertyRef Name="ShipmentID" />
+    </Key>
+    <Property Name="ShipmentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ShipmentAWB" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="150" />
+    <Property Name="ActualDeliveryOn" Type="datetime" />
+    <Property Name="ExpectedDeliveryOn" Type="datetime" />
+    <Property Name="Details" Type="varchar" MaxLength="500" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ShipmentHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipmentID" Type="uniqueidentifier" />
+    <Property Name="Text" Type="nvarchar(max)" />
+    <Property Name="AddedBy" Type="varchar" MaxLength="255" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ShipmentReceipient">
+    <Key>
+      <PropertyRef Name="ReceipientID" />
+    </Key>
+    <Property Name="ReceipientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipmentID" Type="uniqueidentifier" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="255" />
+    <Property Name="AddressLine1" Type="varchar" MaxLength="300" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="300" />
+    <Property Name="Landmark" Type="varchar" MaxLength="150" />
+    <Property Name="City" Type="int" />
+    <Property Name="State" Type="int" />
+    <Property Name="Country" Type="int" />
+    <Property Name="PrimaryContact" Type="varchar" MaxLength="20" />
+    <Property Name="SecondaryContact" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="LastUpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ShipmentSender">
+    <Key>
+      <PropertyRef Name="SenderID" />
+    </Key>
+    <Property Name="SenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShipmentID" Type="uniqueidentifier" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="255" />
+    <Property Name="AddressLine1" Type="varchar" MaxLength="300" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="300" />
+    <Property Name="Landmark" Type="varchar" MaxLength="150" />
+    <Property Name="City" Type="int" />
+    <Property Name="State" Type="int" />
+    <Property Name="Country" Type="int" />
+    <Property Name="PrimaryContact" Type="varchar" MaxLength="20" />
+    <Property Name="SecondaryContact" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="LastUpdatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="StatusList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="UserNames">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="15" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_ShipmentHistory_Shipment">
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="0..1" />
+    <End Role="ShipmentHistory" Type="Self.ShipmentHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentID" />
+      </Principal>
+      <Dependent Role="ShipmentHistory">
+        <PropertyRef Name="ShipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentReceipient_Shipment">
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="0..1" />
+    <End Role="ShipmentReceipient" Type="Self.ShipmentReceipient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentID" />
+      </Principal>
+      <Dependent Role="ShipmentReceipient">
+        <PropertyRef Name="ShipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShipmentSender_Shipment">
+    <End Role="Shipment" Type="Self.Shipment" Multiplicity="0..1" />
+    <End Role="ShipmentSender" Type="Self.ShipmentSender" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipment">
+        <PropertyRef Name="ShipmentID" />
+      </Principal>
+      <Dependent Role="ShipmentSender">
+        <PropertyRef Name="ShipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="test8ModelStoreContainer">
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shipment" EntityType="Self.Shipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipmentHistory" EntityType="Self.ShipmentHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipmentReceipient" EntityType="Self.ShipmentReceipient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShipmentSender" EntityType="Self.ShipmentSender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusList" EntityType="Self.StatusList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserNames" EntityType="Self.UserNames" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ShipmentHistory_Shipment" Association="Self.FK_ShipmentHistory_Shipment">
+      <End Role="Shipment" EntitySet="Shipment" />
+      <End Role="ShipmentHistory" EntitySet="ShipmentHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentReceipient_Shipment" Association="Self.FK_ShipmentReceipient_Shipment">
+      <End Role="Shipment" EntitySet="Shipment" />
+      <End Role="ShipmentReceipient" EntitySet="ShipmentReceipient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShipmentSender_Shipment" Association="Self.FK_ShipmentSender_Shipment">
+      <End Role="Shipment" EntitySet="Shipment" />
+      <End Role="ShipmentSender" EntitySet="ShipmentSender" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

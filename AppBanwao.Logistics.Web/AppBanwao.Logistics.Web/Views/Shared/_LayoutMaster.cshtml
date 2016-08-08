@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+    <link href="~/css/normalize.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.readable.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>    
+    
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/index.js"></script>
+    <script>
+        
+        $(function () {
+            $('a[href*="#"]:not([href="#"])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 2000);
+                        return false;
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('div#about').hover(function () {
+               
+                $('div#about').addClass('animated pulse');
+            })
+        })
+        
+        
+    </script>
+</head>
+<body>
+   
+       
+            <div class="container">
+                <div class="row">
+
+              <header>
+                  <nav class="navbar navbar-inverse navbar-fixed-top">
+                      <div class="container-fluid">
+                          <div class="navbar-header">
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                                  <span class="sr-only">Toggle navigation</span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                              </button>
+                              <a class="navbar-brand" href="@Url.Action("Index","Home")"><strong> V-MAX Express Pvt Ltd</strong></a>
+                          </div>
+                          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                              <ul class="nav navbar-nav">
+                                  <li class="active" ><a href="#about">About Us <span class="sr-only">(current)</span></a></li>
+                                  <li><a href="#services">Our Services</a></li>
+                                  <li><a href="#news">News</a></li>
+                                  @*<li class="dropdown">
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                      <ul class="dropdown-menu" role="menu">
+                                          <li><a href="#">Action</a></li>
+                                          <li><a href="#">Another action</a></li>
+                                          <li><a href="#">Something else here</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="#">Separated link</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="#">One more separated link</a></li>
+                                      </ul>
+                                  </li>*@
+                              </ul>
+                              <form class="navbar-form navbar-left" role="search">
+                                  <div class="form-group">
+                                      <input class="form-control" placeholder="Enter AWB # here..." type="text">
+                                  </div>
+                                  <button type="submit" class="btn btn-default">Search <i class="fa fa-search"></i> </button>
+                              </form>
+                              <ul class="nav navbar-nav navbar-right">
+                                 
+                                  @if (!User.Identity.IsAuthenticated)
+                                  {
+                                    <li><a href="@Url.Action("Request","Quote")" class="btn btn-success btnQuote"><span class=" text-uppercase">Request Quote </span> <i class="fa fa-truck"></i></a></li>
+                                                                    <li><a href="@Url.Action("Login","Account")">Login <i class="fa fa-sign-in"></i></a></li>
+    
+                                  }
+                                  else
+                                  {
+                                      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> @User.Identity.Name<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            
+            <li><a href="@Url.Action("Logout","Account")">Logout <i class="fa fa-sign-out"></i></a></li>
+            
+        </ul>
+    </li>
+                                   
+                                  }
+                              </ul>
+                          </div>
+                      </div>
+                  </nav>
+              </header>
+            </div>
+                </div>
+    <div>
+                    @RenderBody()
+            
+          
+          
+        </div>
+
+    <footer class="services">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-3 col-md-6">
+                    <div class="container">
+
+
+                        <div class="col-lg-3">
+                            <div class="cuadro_intro_hover " >
+                                <p style="text-align:center; margin-top:20px;">
+                                    <img src="~/Images/air1.jpg" class="img-responsive" alt="">
+                                </p>
+                                <div class="caption">
+                                    <div class="blur"></div>
+                                    <div class="caption-text">
+                                        <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">CONTACT US</h3>
+                                        @*<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+                                        <a class=" btn btn-default" href="#"><span class="glyphicon glyphicon-plus"> INFO</span></a>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="cuadro_intro_hover " >
+                                <p style="text-align:center; margin-top:20px;">
+                                    <img src="~/Images/cargo.jpg" class="img-responsive" alt="">
+                                </p>
+                                <div class="caption">
+                                    <div class="blur"></div>
+                                    <div class="caption-text">
+                                        <h3 style="border-top:2px solid white; border-bottom:2px solid white; padding:10px;">ABOUT US</h3>
+                                        @*<p>Loren ipsum dolor si amet ipsum dolor si amet ipsum dolor...</p>
+                                        <a class=" btn btn-default" href="#"><span class="glyphicon glyphicon-plus"> INFO</span></a>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-6">
+                            <h3>USEFUL LINKS:</h3>
+                            <ul style="list-style:none;color:#fff">
+                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-file"></i> News</a></li>
+                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-android"></i> Android</a></li>
+                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-code"></i> C#</a></li>
+                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-code"></i> Java</a></li>
+                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-book"></i> Books</a></li>
+                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-globe"></i> Web</a></li>
+                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-windows"></i> Windows</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <h3>Contact:</h3>
+                            <p>Have a question or feedback? Contact me!</p>
+                            <p><a href="" title="Contact me!"><i class="fa fa-envelope"></i> Contact</a></p>
+                            <h3>Follow:</h3>
+
+
+                            <a href="" id="gh" target="_blank" title="Twitter">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-square-o fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x"></i>
+                                </span>
+                                Twitter
+                            </a>
+                            <a href="" target="_blank" title="GitHub">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-square-o fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x"></i>
+                                </span>
+                                GitHub
+                            </a>
+
+
+
+
+
+
+                        </div>
+                        <br />
+                        <div id="fb-root"></div>
+                        <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+                        <div class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="">Tweet</a>
+                        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+                        <div class="g-plusone" data-annotation="inline" data-width="300" data-href=""></div>
+
+                        <!-- Helyezd el ezt a címkét az utolsó +1 gomb címke mögé. -->
+                        <script type="text/javascript">
+                            (function () {
+                                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                po.src = 'https://apis.google.com/js/platform.js';
+                                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                            })();
+                        </script>
+                        <br />
+
+                        <hr>
+                        <p>Copyright © V-MAX EXPRESS | <a href="">Privacy Policy</a> | <a href="">Terms of Use</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+</body>
+</html>

@@ -11,10 +11,17 @@ namespace AppBanwao.Logistics.Web.Controllers
         //
         // GET: /Home/
 
+        
         public ActionResult Index()
         {
             return View();
         }
+
+        public ActionResult Index1()
+        {
+            return View();
+        }
+
 
     }
 }
