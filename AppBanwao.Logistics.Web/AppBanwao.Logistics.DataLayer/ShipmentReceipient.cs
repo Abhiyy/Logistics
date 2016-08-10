@@ -27,6 +27,7 @@ namespace AppBanwao.Logistics.DataLayer
         public string SecondaryContact { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdatedOn { get; set; }
+        public string Name { get; set; }
     
         public virtual Shipment Shipment { get; set; }
     }

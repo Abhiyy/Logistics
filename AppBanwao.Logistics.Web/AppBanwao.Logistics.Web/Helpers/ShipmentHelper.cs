@@ -39,7 +39,15 @@ namespace AppBanwao.Logistics.Web.Helpers
                         Status = model.Status,
                         UpdatedOn = DateTime.Now
                     };
+                    var sender = new ShipmentSender() { ShipmentID = shipment.ShipmentID };
+                    var recepient = new ShipmentReceipient() { ShipmentID = shipment.ShipmentID };
+                    var shipmentHistory = new ShipmentHistory() { ShipmentID = shipment.ShipmentID};
+                    
                     _context.Shipments.Add(shipment);
+                    _context.ShipmentSenders.Add(sender);
+                    _context.ShipmentReceipients.Add(recepient);
+                    _context.ShipmentHistories.Add(shipmentHistory);
+
                     if (_context.SaveChanges() > 0)
                         return true;
                 }
@@ -60,7 +68,7 @@ namespace AppBanwao.Logistics.Web.Helpers
                     lstShipment.Add(GetShipment(shipmentID));
                 }
 
-                return lstShipment;
+                return lstShipment.OrderByDescending(x=>x.ShipmentCreatedOn).ToList();
             
             }
 
@@ -77,41 +85,50 @@ namespace AppBanwao.Logistics.Web.Helpers
                 {
                     var shipmentDetails = new ShipmentDetailModel()
                     {
+                        ShipmentAWB = shipment.ShipmentAWB,
                         Description = shipment.Description,
                         Details = shipment.Details,
+                        ShipmentCreatedOn =shipment.CreatedOn.HasValue? shipment.CreatedOn.Value:DateTime.Now,
+                        ShipmentUpdatedOn =shipment.UpdatedOn.HasValue? shipment.UpdatedOn.Value:DateTime.Now,
                         ExpectedDeliveryOn = shipment.ExpectedDeliveryOn.Value,
                         RAddressLine1 = shipment.ShipmentReceipients.FirstOrDefault().AddressLine1,
                         RAddressLine2 = shipment.ShipmentReceipients.FirstOrDefault().AddressLine2,
-                        RCity = shipment.ShipmentReceipients.FirstOrDefault().City.Value,
-                        RCountry = shipment.ShipmentReceipients.FirstOrDefault().Country.Value,
-                        RCreatedOn = shipment.ShipmentReceipients.FirstOrDefault().CreatedOn.Value,
+                        RCity = shipment.ShipmentReceipients.FirstOrDefault().City.HasValue?shipment.ShipmentReceipients.FirstOrDefault().City.Value:0,
+                        RCountry = shipment.ShipmentReceipients.FirstOrDefault().Country.HasValue?shipment.ShipmentReceipients.FirstOrDefault().Country.Value:0,
+                        RCreatedOn = shipment.ShipmentReceipients.FirstOrDefault().CreatedOn.HasValue? shipment.ShipmentReceipients.FirstOrDefault().CreatedOn.Value:DateTime.Now,
                         ReceipientID = shipment.ShipmentReceipients.FirstOrDefault().ReceipientID,
                         REmailAddress = shipment.ShipmentReceipients.FirstOrDefault().EmailAddress,
                         RLandmark = shipment.ShipmentReceipients.FirstOrDefault().Landmark,
-                        RLastUpdatedOn = shipment.ShipmentReceipients.FirstOrDefault().LastUpdatedOn.Value,
+                        RLastUpdatedOn = shipment.ShipmentReceipients.FirstOrDefault().LastUpdatedOn.HasValue?shipment.ShipmentReceipients.FirstOrDefault().LastUpdatedOn.Value:DateTime.Now,
                         RPrimaryContact = shipment.ShipmentReceipients.FirstOrDefault().PrimaryContact,
                         RSecondaryContact = shipment.ShipmentReceipients.FirstOrDefault().SecondaryContact,
-                        RState = shipment.ShipmentReceipients.FirstOrDefault().State.Value,
+                        RState =shipment.ShipmentReceipients.FirstOrDefault().State.HasValue? shipment.ShipmentReceipients.FirstOrDefault().State.Value:0,
                         SAddressLine1 = shipment.ShipmentSenders.FirstOrDefault().AddressLine1,
                         SAddressLine2 = shipment.ShipmentSenders.FirstOrDefault().AddressLine2,
-                        SCity = shipment.ShipmentSenders.FirstOrDefault().City.Value,
-                        SCountry = shipment.ShipmentSenders.FirstOrDefault().Country.Value,
-                        SCreatedOn = shipment.ShipmentSenders.FirstOrDefault().CreatedOn.Value,
+                        SCity =shipment.ShipmentSenders.FirstOrDefault().City.HasValue? shipment.ShipmentSenders.FirstOrDefault().City.Value:0,
+                        SCountry = shipment.ShipmentSenders.FirstOrDefault().Country.HasValue? shipment.ShipmentSenders.FirstOrDefault().Country.Value:0,
+                        SCreatedOn = shipment.ShipmentSenders.FirstOrDefault().CreatedOn.HasValue?shipment.ShipmentSenders.FirstOrDefault().CreatedOn.Value:DateTime.Now,
                         SenderID = shipment.ShipmentSenders.FirstOrDefault().SenderID,
                         SEmailAddress = shipment.ShipmentSenders.FirstOrDefault().EmailAddress,
                         SLandmark = shipment.ShipmentSenders.FirstOrDefault().Landmark,
-                        SLastUpdatedOn = shipment.ShipmentSenders.FirstOrDefault().LastUpdatedOn.Value,
+                        SLastUpdatedOn = shipment.ShipmentSenders.FirstOrDefault().LastUpdatedOn.HasValue? shipment.ShipmentSenders.FirstOrDefault().LastUpdatedOn.Value:DateTime.Now,
                         SPrimaryContact = shipment.ShipmentSenders.FirstOrDefault().PrimaryContact,
                         SSecondaryContact = shipment.ShipmentSenders.FirstOrDefault().SecondaryContact,
-                        SState = shipment.ShipmentSenders.FirstOrDefault().State.Value,
+                        SState = shipment.ShipmentSenders.FirstOrDefault().State.HasValue?shipment.ShipmentSenders.FirstOrDefault().State.Value:0,
+                        RName = shipment.ShipmentReceipients.FirstOrDefault().Name,
+                        SName = shipment.ShipmentSenders.FirstOrDefault().Name,
+                        ShipmentID = shipment.ShipmentID,
+                        Status = shipment.Status.Value,
+                        ActualDeliveryDate =shipment.ActualDeliveryOn.HasValue?shipment.ActualDeliveryOn.Value.ToString():null
                     };
-                    shipmentDetails.ReCity = _context.Cities.Where(x => x.ID == shipmentDetails.RCity).FirstOrDefault().Name;
-                    shipmentDetails.ReState = _context.States.Where(x => x.ID == shipmentDetails.RState).FirstOrDefault().Name;
-                    shipmentDetails.ReCountry = _context.States.Where(x => x.ID == shipmentDetails.RCountry).FirstOrDefault().Name;
-                    shipmentDetails.SenderCity = _context.Cities.Where(x => x.ID == shipmentDetails.RCity).FirstOrDefault().Name;
-                    shipmentDetails.SenderState = _context.States.Where(x => x.ID == shipmentDetails.RState).FirstOrDefault().Name;
-                    shipmentDetails.SenderCountry = _context.States.Where(x => x.ID == shipmentDetails.RCountry).FirstOrDefault().Name;
-
+                    shipmentDetails.ReCity = shipmentDetails.RCity!=0?_context.Cities.Where(x => x.ID == shipmentDetails.RCity).FirstOrDefault().Name:string.Empty;
+                    shipmentDetails.ReState = shipmentDetails.RState!=0?_context.States.Where(x => x.ID == shipmentDetails.RState).FirstOrDefault().Name:string.Empty;
+                    shipmentDetails.ReCountry =shipmentDetails.RCountry!=0? _context.States.Where(x => x.ID == shipmentDetails.RCountry).FirstOrDefault().Name:string.Empty;
+                    shipmentDetails.SenderCity = shipmentDetails.SCity!=0?_context.Cities.Where(x => x.ID == shipmentDetails.SCity).FirstOrDefault().Name:string.Empty;
+                    shipmentDetails.SenderState = shipmentDetails.SState!=0?_context.States.Where(x => x.ID == shipmentDetails.SState).FirstOrDefault().Name:string.Empty;
+                    shipmentDetails.SenderCountry =shipmentDetails.SCountry!=0?_context.States.Where(x => x.ID == shipmentDetails.SCountry).FirstOrDefault().Name:string.Empty;
+                    shipmentDetails.ShipmentStatus = _context.StatusLists.Where(x => x.ID == shipment.Status).FirstOrDefault().Name;
+                    shipmentDetails.ShipmentHistory = shipment.ShipmentHistories.ToList();
                     return shipmentDetails;
                 }
                 

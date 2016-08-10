@@ -59,13 +59,13 @@
                                   <span class="icon-bar"></span>
                                   <span class="icon-bar"></span>
                               </button>
-                              <a class="navbar-brand" href="#"><strong> V-MAX Express Pvt Ltd</strong></a>
+                              <a class="navbar-brand" href="@Url.Action("Index","Home")"><strong> V-MAX Express Pvt Ltd</strong></a>
                           </div>
                           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                               <ul class="nav navbar-nav">
                                   <li class="active" ><a href="#about">About Us <span class="sr-only">(current)</span></a></li>
                                   <li><a href="#services">Our Services</a></li>
-                                  <li><a href="#news">News</a></li>
+                                  <li><a href="#news">Expertise</a></li>
                                   @*<li class="dropdown">
                                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                       <ul class="dropdown-menu" role="menu">
@@ -86,7 +86,27 @@
                                   <button type="submit" class="btn btn-default">Search <i class="fa fa-search"></i> </button>
                               </form>
                               <ul class="nav navbar-nav navbar-right">
-                                  <li><a href="#">Login <i class="fa fa-sign-in"></i></a></li>
+                                 
+                                  @if (!User.Identity.IsAuthenticated)
+                                  {
+                                    <li><a href="@Url.Action("Request","Quote")" class="btn btn-success btnQuote"><span class=" text-uppercase">Request Quote </span> <i class="fa fa-truck"></i></a></li>
+                                      <li><a href="@Url.Action("Request","Quote")" class="btn btn-sm btn-success btnQuote"><span class=" text-uppercase"><i class="fa fa-phone"></i> 91-8010391369 </span> </a></li>
+                                                                    <li><a href="@Url.Action("Login","Account")">Login <i class="fa fa-sign-in"></i></a></li>
+    
+                                  }
+                                  else
+                                  
+                                  {
+                                      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> @User.Identity.Name<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            
+            <li><a href="@Url.Action("Logout","Account")">Logout <i class="fa fa-sign-out"></i></a></li>
+            
+        </ul>
+    </li>
+                                   
+                                  }
                               </ul>
                           </div>
                       </div>
@@ -143,22 +163,32 @@
 
 
                         <div class="col-lg-3 col-md-6">
-                            <h3>USEFUL LINKS:</h3>
+                            <h3>OUR SERVICES:</h3>
                             <ul style="list-style:none;color:#fff">
-                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-file"></i> News</a></li>
-                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-android"></i> Android</a></li>
-                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-code"></i> C#</a></li>
-                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-code"></i> Java</a></li>
-                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-book"></i> Books</a></li>
-                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-globe"></i> Web</a></li>
-                                <li><a href="" style="  color:#808080;" class="text-uppercase"><i class="fa fa-windows"></i> Windows</a></li>
+                                <li><a href="" style="  color:#fff;" class="text-uppercase"><i class="fa fa-plane"></i>Air Frieght</a></li>
+                                <li><a href="" style="  color:#fff;" class="text-uppercase"><i class="fa fa-ship"></i> Sea Frieght</a></li>
+                                <li><a href="" style="  color:#fff;" class="text-uppercase"><i class="fa fa-plane"></i> Road Transport</a></li>
+                                <li><a href="" style="  color:#fff;" class="text-uppercase"><i class="fa fa-home"></i> Door step delivery</a></li>
+                                <li><a href="" style="  color:#fff;" class="text-uppercase"><i class="fa fa-dropbox"></i> Packaging</a></li>
+                                <li><a href="" style="  color:#fff;" class="text-uppercase"><i class="fa fa-archive"></i> Warehousing</a></li>
+                             
                             </ul>
                         </div>
 
                         <div class="col-lg-3 col-md-6">
-                            <h3>Contact:</h3>
-                            <p>Have a question or feedback? Contact me!</p>
-                            <p><a href="" title="Contact me!"><i class="fa fa-envelope"></i> Contact</a></p>
+                            <h3>CONTACT US:</h3>
+                            <p>V-MAX EXPRESS PVT LTD<br />
+                                Plot no 184A, Khasra no 1021 <br />
+                                Opposite CISF Camp, Mahipalpur<br />
+                                New Delhi - 110037 <br />
+                                India.
+                                <br />
+                                <i class="fa fa-mobile"></i> Call Us: +91-8010391369, +91-9013730701
+                                <br />
+                            </p>
+                            <p><a href="" title="Contact me!"><i class="fa fa-envelope"></i> Email: info@v-maxexpress.com</a>
+                                <a href="" title="Contact me!">marketing@v-maxexpress.com</a>
+                            </p>
                             <h3>Follow:</h3>
 
 
@@ -190,7 +220,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.0";
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -201,7 +231,7 @@
 
                         <div class="g-plusone" data-annotation="inline" data-width="300" data-href=""></div>
 
-                        <!-- Helyezd el ezt a címkét az utolsó +1 gomb címke mögé. -->
+                
                         <script type="text/javascript">
                             (function () {
                                 var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace AppBanwao.Logistics.Web.Controllers
 {
+    [Authorize]
     public class ShipmentController : BaseController
     {
         //
@@ -16,7 +17,11 @@ namespace AppBanwao.Logistics.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            _shipmentHelper = new ShipmentHelper();
+
+            var shipment = _shipmentHelper.GetShipments();
+            _shipmentHelper = null;
+            return View(shipment);
         }
 
         public ActionResult Create()
@@ -35,16 +40,45 @@ namespace AppBanwao.Logistics.Web.Controllers
                 if (_shipmentHelper.AddShipment(model))
                 {
                     Success(AlertStyles.SuccessSymbol + "The shipment has been added successfully.", true);
+                    _shipmentHelper = null;
                     return RedirectToAction("Index");
                 }
                 else
                     Danger(AlertStyles.DangerSymbol + "The shipment has not been added successfully.", true);
 
-               
+                _shipmentHelper = null;
             }
-
+            CreateViewBag();
             return View(model);
 
+        }
+
+        public ActionResult Details(Guid id)
+        {
+            _shipmentHelper = new ShipmentHelper();
+            var shipment = _shipmentHelper.GetShipment(id);
+            _shipmentHelper = null;
+            return View(shipment);
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            return View();
+        }
+
+        public ActionResult Sender(Guid id)
+        {
+            return View();
+        }
+
+        public ActionResult Recepient(Guid id)
+        {
+            return View();
+        }
+
+        public ActionResult AddHistory(Guid id)
+        {
+            return View();
         }
 
         void CreateViewBag() 

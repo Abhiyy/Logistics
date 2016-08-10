@@ -56,6 +56,7 @@
           </Key>
           <Property Name="ReceipientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShipmentID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="255" />
           <Property Name="AddressLine1" Type="varchar" MaxLength="300" />
           <Property Name="AddressLine2" Type="varchar" MaxLength="300" />
@@ -74,6 +75,7 @@
           </Key>
           <Property Name="SenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShipmentID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="255" />
           <Property Name="AddressLine1" Type="varchar" MaxLength="300" />
           <Property Name="AddressLine2" Type="varchar" MaxLength="300" />
@@ -265,6 +267,7 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="LastUpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Shipment" Relationship="test8Model.FK_ShipmentReceipient_Shipment" FromRole="ShipmentReceipient" ToRole="Shipment" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ShipmentSender">
           <Key>
@@ -284,6 +287,7 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="LastUpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Shipment" Relationship="test8Model.FK_ShipmentSender_Shipment" FromRole="ShipmentSender" ToRole="Shipment" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -405,6 +409,7 @@
           <EntitySetMapping Name="ShipmentReceipients">
             <EntityTypeMapping TypeName="test8Model.ShipmentReceipient">
               <MappingFragment StoreEntitySet="ShipmentReceipient">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LastUpdatedOn" ColumnName="LastUpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="SecondaryContact" ColumnName="SecondaryContact" />
@@ -424,6 +429,7 @@
           <EntitySetMapping Name="ShipmentSenders">
             <EntityTypeMapping TypeName="test8Model.ShipmentSender">
               <MappingFragment StoreEntitySet="ShipmentSender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LastUpdatedOn" ColumnName="LastUpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="SecondaryContact" ColumnName="SecondaryContact" />

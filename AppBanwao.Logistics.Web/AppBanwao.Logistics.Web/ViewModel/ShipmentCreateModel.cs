@@ -15,7 +15,7 @@ namespace AppBanwao.Logistics.Web.ViewModel
         [Display(Name = "Enter Description: ")]
         public string Description { get; set; }
         [Required]
-        [Display(Name = "Choose Expected Delivery Date: ")]
+        [Display(Name = "Expected Delivery Date: ")]
         public DateTime ExpectedDeliveryOn { get; set; }
         
         [Display(Name = "Enter shipment details: ")]

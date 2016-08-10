@@ -1,3 +1,4 @@
+body { padding-top: 6% }
 .carousel-fade .carousel-inner .item {
   -webkit-transition-property: opacity;
   transition-property: opacity;
@@ -42,7 +43,7 @@ body,
 
 .aboutjumbotron
 {
-    background-image: url("../Images/truck.jpg") ;
+    background-image: url("../Images/people.jpg") ;
   position: relative;
   width: 100%;
   /*height: 350px;*/ /*same height as jumbotron 
@@ -50,6 +51,11 @@ body,
   left:0;
   z-index: -1;
     background-color: #cccccc;*/
+   background-repeat: no-repeat;
+   /*background-attachment: fixed;*/
+      background-size: 100% 100%;
+      background-position:center;
+      opacity:0.7
 }
 
 .hovereffect {
@@ -271,3 +277,16 @@ color:#183650;
 		top:-20px;
 		width: 100%;
 	}
+
+.btnQuote {
+color:#fff !important;
+background-color:#42b078 !important;
+}
+    .btnQuote:hover {
+    /*background-color:#42b078 !important;*/
+    color:#42b078;
+    }
+
+.borderMenu {
+border-right:1px solid #34ccff;
+}
